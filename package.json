@@ -1,0 +1,19 @@
+{
+  "name": "budgetplanner",
+  "version": "1.0.0",
+  "description": "An app to help you budget for a major event or purchase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kokosakyi/budgetPlanner.git"
+  },
+  "author": "Conrad Kyei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kokosakyi/budgetPlanner/issues"
+  },
+  "homepage": "https://github.com/kokosakyi/budgetPlanner#readme"
+}
