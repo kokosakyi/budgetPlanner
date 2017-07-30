@@ -35,4 +35,15 @@ mongoose.connect(config.uri, (err)=>{
 app.use(cors({ origin: 'http://localhost:4200' })); // Allows cross origin in development only
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
-app.use(express.static(__dirname + '/public')); // Provide static directory for frontend
+//app.use(express.static(__dirname + '/public')); // Provide static directory for frontend
+app.use(express.static(__dirname + '/client/dist'));
+
+// Connect server to Angular 2 Index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+});
+
+// Start Server: Listen on port 8080
+app.listen(port, () => {
+  console.log('Listening on port ' + port + ' in ' + process.env.NODE_ENV + ' mode');
+});
