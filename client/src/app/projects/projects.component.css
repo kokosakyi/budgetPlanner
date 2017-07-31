@@ -1,0 +1,14 @@
+.header {
+    padding-top: 30px;
+    text-align: right;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.content-pad {
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
