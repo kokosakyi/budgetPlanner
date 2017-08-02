@@ -1,0 +1,69 @@
+<div class="wrapper">
+  <md-card>
+    <md-card-title>
+      Create your Account
+    </md-card-title>
+    <md-card-content>
+      <!-- Custom Success/Error Message -->
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onRegisterSubmit()">
+        <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty) || (!usernameValid && form.controls.username.dirty), 'has-success': !form.controls.username.errors && usernameValid}">
+          <md-input-container class="full-width">
+            <input type="text" mdInput placeholder="Username" (blur)="checkUsername()" formControlName="username" autocomplete="off">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>
+            <li *ngIf="form.controls.username.errors?.minlength && form.controls.username.dirty || form.controls.username.errors?.maxlength && form.controls.username.dirty ">Minimum characters: 3, Maximum characters: 15</li>
+            <li *ngIf="form.controls.username.errors?.validateUsername && form.controls.username.dirty">Username must not have any special characters</li>
+            <li *ngIf="usernameMessage">{{ usernameMessage }}</li>
+          </ul>
+        </div>
+
+        <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) || (!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}">
+          <md-input-container class="full-width">
+            <input type="email" mdInput placeholder="Email Address" (blur)="checkEmail()" formControlName="email" autocomplete="off">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
+            <li *ngIf="(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty">Minimum characters: 5, Maximum characters: 30</li>
+            <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid e-mail</li>
+            <li *ngIf="emailMessage">{{ emailMessage}}</li>
+          </ul>
+        </div>
+
+        <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}">
+          <md-input-container class="full-width">
+            <input type="password" mdInput placeholder="Password" formControlName="password" autocomplete="off">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required</li>
+            <li *ngIf="form.controls.password.errors?.minlength && form.controls.password.dirty || form.controls.password.errors?.maxlength && form.controls.password.dirty ">Minimum characters: 8, Maximum characters: 35</li>
+            <li *ngIf="form.controls.password.errors?.validatePassword && form.controls.password.dirty">Password must have at least one number, at least one upper case letter and one special character.</li>
+          </ul>
+        </div>
+
+        <div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors && !form.errors?.matchingPasswords}">
+          <md-input-container class="full-width">
+            <input type="password" mdInput placeholder="Confirm Password" formControlName="confirm" autocomplete="off">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">This field is required</li>
+            <li *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty">Password do not match</li>
+          </ul>
+        </div>
+
+        <div style="text-align: right">
+          <button md-raised-button color="primary" [disabled]="!form.valid || processing || !emailValid || !usernameValid" type="submit">Submit</button>
+        </div>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

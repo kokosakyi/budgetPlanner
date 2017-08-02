@@ -1,17 +1,39 @@
 <div class="wrapper">
   <md-card>
     <md-card-content>
-      <form>
-        <md-input-container class="full-width">
-          <input type="text" mdInput placeholder="Username">
-        </md-input-container>
-        <md-input-container class="full-width">
-          <input type="password" mdInput placeholder="Password">
-        </md-input-container>
+      <!-- Custom Success/Error Message -->
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+      <form [formGroup]="form" (submit)="onLoginSubmit()">
+        <!-- Username Field -->
+        <div [ngClass]="{'has-error': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
+          <md-input-container class="full-width">
+            <input type="text" mdInput placeholder="Username" formControlName="username">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required.</li>
+          </ul>
+        </div>
+        <!-- Password Field  -->
+        <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
+          <md-input-container class="full-width">
+            <input type="password" mdInput placeholder="Password" formControlName="password">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
+          </ul>
+        </div>
         <div style="text-align: right">
-          <button md-raised-button color="primary">Login</button>
+          <button md-raised-button color="primary" [disabled]="!form.valid || processing" type="submit">Login</button>
         </div>
       </form>
+
+
     </md-card-content>
   </md-card>
 </div>

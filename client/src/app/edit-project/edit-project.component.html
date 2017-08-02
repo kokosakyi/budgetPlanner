@@ -1,0 +1,52 @@
+<div class="mat-typography">
+  <div class="header content-pad">
+    <md-card>
+      <md-card-title style="text-align: left">My Wedding List</md-card-title>
+      <md-card-content>
+        <p class="mat-h3">Total Savings: <span style="color: red; font-weight: bold">$3000.00</span>&nbsp; &nbsp;<span><button md-icon-button><md-icon class="btnEditSize">edit</md-icon></button></span></p>
+        <p class="mat-h3">Monthly Savings: <span style="color: blue; font-weight: bold"> $150.00</span>&nbsp; &nbsp;<span><button md-icon-button><md-icon class="btnEditSize">edit</md-icon></button></span></p>
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-content style="text-align: center">
+          <form [formGroup]="form" (ngSubmit)="addItem()">
+            <md-input-container>
+              <input type="text" mdInput placeholder="List Item" name="itemName" formControlName="itemName">
+            </md-input-container>
+            <md-input-container>
+              <input type="number" mdInput placeholder="Cost" name="cost" formControlName="cost">
+            </md-input-container>
+            <button md-raised-button color="primary">Add</button>
+          </form>
+      </md-card-content>
+    </md-card>
+    <md-card>
+      {{ lineItem }}
+      {{ lineCost }}
+    </md-card>
+  </div>
+
+  <div class="content-pad">
+    <md-card>
+      <md-card-content>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>List Item</th>
+              <th>Cost</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lineInfo of info; let i = index">
+              <th scope="row"> {{ i + 1 }}</th>
+              <td>{{ lineInfo.lineItem }}</td>
+              <td>{{ lineInfo.lineCost | currency:'USD':true:'1.2-2' }}</td>
+              <td style="text-align:right"><button md-icon-button><md-icon class="btnRowSize edit">edit</md-icon></button> <button md-icon-button><md-icon class="btnRowSize delete">delete</md-icon></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+    </md-card>
+  </div>

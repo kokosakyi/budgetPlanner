@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/kokosakyi/budgetPlanner#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "crypto": "0.0.3",
     "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.4"
   }
 }
