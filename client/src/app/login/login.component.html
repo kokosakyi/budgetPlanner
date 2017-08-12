@@ -28,12 +28,10 @@
             <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
           </ul>
         </div>
-        <div style="text-align: right">
+        <div >
           <button md-raised-button color="primary" [disabled]="!form.valid || processing" type="submit">Login</button>
         </div>
       </form>
-
-
     </md-card-content>
   </md-card>
 </div>

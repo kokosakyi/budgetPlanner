@@ -12,3 +12,13 @@
     padding-left: 30px;
     padding-right: 30px;
 }
+
+md-card-title {
+    display: flex;
+}
+
+.title-ions {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}

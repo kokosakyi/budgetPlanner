@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 
@@ -20,8 +20,12 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
+import { ProjectService } from './services/project.service';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { EditProjectTotalSavingsComponent } from './edit-project-total-savings/edit-project-total-savings.component';
+import { EditProjectMonthlySavingsComponent } from './edit-project-monthly-savings/edit-project-monthly-savings.component';
+import { DeleteProjectComponent } from './delete-project/delete-project.component';
 
 // Our Array of Angular 2 Routes
 const appRoutes: Routes = [
@@ -50,7 +54,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard] // User must be logged in to view this route
   },
   {
-    path: 'edit-project',
+    path: 'edit-project/:id',
     component: EditProjectComponent, // Edit Project Route
     canActivate: [AuthGuard] // User must be logged in to view this route
   },
@@ -94,11 +98,15 @@ const appRoutes: Routes = [
     ProjectComponent,
     RegisterComponent,
     ProfileComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    EditProjectTotalSavingsComponent,
+    EditProjectMonthlySavingsComponent,
+    DeleteProjectComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
+    MdDialogModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -106,7 +114,12 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard],
+   entryComponents: [
+    EditProjectTotalSavingsComponent,
+    EditProjectMonthlySavingsComponent,
+    DeleteProjectComponent
+  ],
+  providers: [AuthService, AuthGuard, NotAuthGuard, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

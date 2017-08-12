@@ -1,42 +1,10 @@
-.btnEditSize {
-    font-size: 1.5em;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    margin: 0px;
+.full-width {
+  width: 30vw;
 }
 
-.btnRowSize {
-    padding-bottom: 0px;
-    padding-top: 0px;
-    margin: 0px;
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
 }
-
-.edit {
-    color: blue;
-}
-
-.delete {
-    color: red;
-}
-
-.header {
-    padding-top: 30px;
-    text-align: right;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
-}
-
-.content-pad {
-    padding-bottom: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-tr {
-    border-bottom: 1px solid lightgray;
-    font-size: 1.3em;
-}
-
-

@@ -20,6 +20,22 @@ let titleLengthChecker = (title) => {
   }
 };
 
+// Validate Function to check blog title length
+let listItemLengthChecker = (title) => {
+  // Check if blog title exists
+  if (!title) {
+    return false; // Return error
+  } else {
+    // Check the length of title
+    if (title.length > 50) {
+      return false; // Return error if not within proper length
+    } else {
+      return true; // Return as valid title
+    }
+  }
+};
+
+
 // Validate Function to check if valid title format
 let alphaNumericTitleChecker = (title) => {
   // Check if title exists
@@ -50,8 +66,8 @@ const titleValidators = [
 const listItemValidator = [
   // First list items Validator
   {
-    validator: titleLengthChecker,
-    message: 'Item name must be more than 5 characters but no more than 50'
+    validator: listItemLengthChecker,
+    message: 'Item name must be no more than 50'
   },
   // Second Title Validator
   {

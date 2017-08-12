@@ -1,31 +1,31 @@
 <div class="mat-typography">
-<div class="header content-pad">
-  <md-card>
-  <span class="example-spacer"></span>
-  <button md-fab (click)="openProject()"><i class="material-icons">add</i></button>
-  </md-card>
-</div>
+  <div class="header content-pad">
+    <md-card>
+      <span class="example-spacer"></span>
+      <button md-fab (click)="openProject()"><i class="material-icons">add</i></button>
+    </md-card>
+  </div>
 
-<div class="content-pad">
-  <md-card>
-    <md-card-title>My Wedding List</md-card-title>
-    <md-card-content>
-      <p class="mat-h3">Total Cost: <span style="color: red; font-weight: bold">$3000.00</span></p>
-      <p class="mat-h3">Total Savings: <span style="color: green; font-weight: bold"> $250.00</span></p>
-      <p class="mat-h3">Monthly Savings: <span style="color: blue; font-weight: bold"> $150.00</span></p>
-      <p class="mat-h3">Target Duration: <span style="color: orange; font-weight: bold">10 months remainings</span></p>
-    </md-card-content>
-  </md-card>
-</div>
+  <div class="content-pad" *ngIf="!hasProjects">
+    <md-card>
+      <h2 class="page-header">No projects added yet!</h2>
+      {{ allProjects }}
+    </md-card>
+  </div>
 
-<div class="content-pad">
-  <md-card>
-    <md-card-title>My Wedding List</md-card-title>
-    <md-card-content>
-      <p class="mat-h3">Total Cost: <span style="color: red; font-weight: bold">$3000.00</span></p>
-      <p class="mat-h3">Total Savings: <span style="color: green; font-weight: bold"> $250.00</span></p>
-      <p class="mat-h3">Monthly Savings: <span style="color: blue; font-weight: bold"> $150.00</span></p>
-      <p class="mat-h3">Target Duration: <span style="color: orange; font-weight: bold">10 months remainings</span></p>
-    </md-card-content>
-  </md-card>
-</div>
+  <div class="content-pad" *ngFor="let project of allProjects">
+    <md-card>
+      <md-card-title>
+        {{ project.title }}
+        <div class="title-ions">
+          <button md-icon-button [routerLink]="['/edit-project/', project._id]"><md-icon style="color: darkgreen"> edit </md-icon> </button>          &nbsp; &nbsp; <button (click)="onDeleteClicked(project._id)" md-icon-button> <md-icon style="color: red"> cancel </md-icon> </button>
+        </div>
+      </md-card-title>
+      <md-card-content *ngIf="hasProjects">
+        <p class="mat-h3">Total Cost: <span style="color: red; font-weight: bold">{{ project.totalCost }}</span></p>
+        <p class="mat-h3">Total Savings: <span style="color: green; font-weight: bold"> {{ project.totalSavings }}</span></p>
+        <p class="mat-h3">Monthly Savings: <span style="color: blue; font-weight: bold"> {{ project.monthlySavings }}</span></p>
+        <p class="mat-h3">Target Duration: <span style="color: orange; font-weight: bold">{{ project.targetDuration }} months remainings</span></p>
+      </md-card-content>
+    </md-card>
+  </div>

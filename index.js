@@ -22,6 +22,8 @@ const port = process.env.PORT || 8080;
 
 const authentication = require('./routes/authentication')(router); // Import Authentication Routes
 
+const projects = require('./routes/projects')(router); // Import Projects Routes
+
 // DATABASE Connection
 mongoose.connect(config.uri, (err)=>{
     // Check if database was able to connect.
@@ -40,6 +42,7 @@ app.use(bodyParser.json()); // parse application/json
 //app.use(express.static(__dirname + '/public')); // Provide static directory for frontend
 app.use(express.static(__dirname + '/client/dist'));
 app.use('/authentication', authentication); // Use Authentication routes in application
+app.use('/projects', projects); // Use the Projects routes in application
 
 // Connect server to Angular 2 Index.html
 app.get('*', (req, res) => {

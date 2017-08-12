@@ -1,16 +1,58 @@
-<div class="mat-typography">
-  <div class="header content-pad">
-    <md-card>
-      <md-card-content style="text-align: center">
-          <form>
-            <md-input-container>
-              <input type="text" mdInput placeholder="Title">
-            </md-input-container>
-            <md-input-container>
-              <input type="number" mdInput placeholder="Cost">
-            </md-input-container>
-            <button md-raised-button color="primary">Add</button>
-          </form>
-      </md-card-content>
-    </md-card>
-  </div>
+<div class="wrapper">
+  <md-card>
+    <md-card-title>
+      Create New Project
+    </md-card-title>
+    <md-card-content>
+       <!-- Custom Success/Error Message -->
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div> 
+
+      <form [formGroup]="form" (ngSubmit)="AddProject()">
+        <!-- Title Field -->
+        <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+          <md-input-container class="full-width">
+            <input type="text" mdInput placeholder="Title" formControlName="title">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+            <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">Max length: 50, Min length: 5</li>
+            <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or number</li>
+          </ul>
+        </div>
+
+        <!-- Total Savings Field -->
+        <div [ngClass]="{'has-success': form.controls.totalSavings.valid, 'has-error': form.controls.totalSavings.dirty && form.controls.totalSavings.errors}">
+          <md-input-container class="full-width">
+            <input type="number" mdInput placeholder="Total Savings" formControlName="totalSavings">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.totalSavings.dirty && form.controls.totalSavings.errors?.required">This field is required.</li>
+            <li *ngIf="form.controls.totalSavings.dirty && form.controls.totalSavings.errors?.numberAndDecimalValidation">Must be a valid decimal number</li>
+          </ul>
+        </div>
+        <!-- Monthly Savings Field -->
+        <div [ngClass]="{'has-success': form.controls.monthlySavings.valid, 'has-error': form.controls.monthlySavings.dirty && form.controls.monthlySavings.errors}">
+          <md-input-container class="full-width">
+            <input type="number" mdInput placeholder="Monthly Savings" formControlName="monthlySavings">
+          </md-input-container>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls.monthlySavings.dirty && form.controls.monthlySavings.errors?.required">This field is required.</li>
+            <li *ngIf="form.controls.monthlySavings.dirty && form.controls.monthlySavings.errors?.numberAndDecimalValidation">Must be a valid decimal number</li>
+          </ul>
+        </div>
+        <div style="text-align: right">
+          <button md-raised-button color="primary" [disabled]="!form.valid || processing" type="submit">Add Project</button>
+        </div>
+      </form>
+
+
+    </md-card-content>
+  </md-card>
+</div>

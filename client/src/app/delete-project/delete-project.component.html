@@ -1,0 +1,11 @@
+<h2 md-dialog-title>Delete project?</h2>
+<div md-dialog-content>
+  <div>
+    <p>Are you sure you want to delete project?</p>
+  </div>
+  <div md-dialog-actions>
+    <button md-raised-button md-dialog-close>No</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button md-raised-button color="primary" [md-dialog-close]="true">Yes</button>
+  </div>
+</div>
